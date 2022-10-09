@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body
+{
+	background-image:url("/opt/lampp/htdocs/wt/470a19a36904fe200610cc1f41eb00d9.jpg");
+	font-size:19px;
+	font-family:courier;
+}
+</style>
+</head>
+<center><body style="color:white;font-family:courier">
+<div class="container mt-5 pt-5">
+<h1 style="color:white;font-family:courier"><b><u>ENTER YOUR DETAILS</u></b></h1><br>
+<form action="" method="get" id="form"><!--let y=pas.match(/[A-Z]+[a-z]+/);-->
+<b>Name:</b><input type="text" name="uname" id="uname"><br><br>
+<b>Mobile Number:</b><input type="text" name="phone" id="phone"><br><br>
+<b>Email Id:</b><input type="text" name="email" id="email"><br><br>
+<b>Password:</b><input type="password" name="pass" id="pass"><br><br>
+<span id="error" style="color:white;font-family:verdana"></span><br><br>
+<button type="submit">SUBMIT</button>
+<button type="reset">RESET</button>
+</form>
+<p id="demo" align="center"></p>
+<script>
+let uerror=document.getElementById('error');
+//let form=document.getElementById("form");
+let phone=document.getElementById("phone");
+form.addEventListener('submit',even=>{even.preventDefault();
+					validate();
+					});
+let uname=document.getElementById('uname');
+let pass=document.getElementById('pass');
+let emai=document.getElementById('email');
+function validate()
+{
+	let num=phone.value.trim();
+	let name=uname.value.trim();
+	let pa=pass.value.trim();
+	let email=emai.value.trim();
+	if((name=="") ||(name.length<3))
+	{
+		uerror.innerHTML="NAME SHOULD NOT EMPTY AND MUST CONTAIN ATLEAST 3 CHARACTERS";
+	}
+	else if(num==="")
+	{
+		uerror.innerText="PHONE NUMBER FIELD SHOULD NOT EMPTY";
+	}
+	else if(pa==="" ||pa.length<8)
+	{
+		uerror.innerText="PASSWORD SHOULD NOT EMPTY AND MUST CONTAIN ATLEAST 8 CHARCTERS";
+	}
+	else
+	{
+		let v=name.match(/[a-zA-Z]+/);
+		let x=num.match(/[6-9][0-9]{9}/);
+		let y=pa.match(/[a-z]+/);
+		let z=pa.match(/[A-Z]+/);
+		let q=pa.match(/[#$^@&_-]+/);
+		let f=pa.match(/[0-9]+/);
+		//let pwd=pa.match(/[a-z]+[A-Z]+[#$^&@_-]+[0-9]+/);
+		let e=email.match(/[a-zA-Z0-9._-]+[@][a-zA-Z0-9_-]+[.][a-z]{2,6}/);
+		let password=y+z+q+f;
+		if(v==name){
+			if(x==num)
+			{
+				if(password.length==pa.length)
+				{
+					if(e==email)	
+						window.location.href="http://localhost:8000/order.php";
+
+					else
+						uerror.innerText="ENTER VALID EMAIL ID";
+				}	
+				else{
+					
+					uerror.innerText="ENTER VALID PASSWORD";
+					
+				}	
+			}
+			else
+				uerror.innerText="ENTER VALID PHONE NUMBER";
+		}
+		else{
+			uerror.innerText="NAME SHOULD CONTAIN ONLY ALPHABETS";
+		}
+	}
+}
+</script>
+
+</div>
+
+</body></center>
+</html>
+
+
